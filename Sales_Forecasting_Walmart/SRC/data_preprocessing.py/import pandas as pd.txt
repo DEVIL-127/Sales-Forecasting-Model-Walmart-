@@ -1,0 +1,9 @@
+import pandas as pd
+
+def preprocess_sales_data(filepath):
+    data = pd.read_csv(filepath)
+    data.fillna(method='ffill', inplace=True)
+    data['Date'] = pd.to_datetime(data['Date'])
+    data['Year'] = data['Date'].dt.year
+    data['Month'] = data['Date'].dt.month
+    return data

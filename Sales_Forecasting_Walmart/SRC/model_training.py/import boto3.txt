@@ -1,0 +1,8 @@
+import boto3
+
+def deploy_to_aws(model):
+    s3 = boto3.client('s3')
+    # Save model and deploy it to S3
+    model.save('model.pkl')
+    s3.upload_file('model.pkl', 'my-bucket', 'model.pkl')
+    print("Model deployed to AWS S3")
